@@ -1,6 +1,6 @@
 <?php
 
-class User extends CI_Model{
+class UserModel extends CI_Model{
     public $user_id;
     public $user_type;
     public $username;
@@ -10,7 +10,7 @@ class User extends CI_Model{
     public $middlename;
     public $lastname;
 
-    private $TABLE = "User";
+    private $TABLE = "user";
 
     public function __construct()
     {
@@ -22,17 +22,18 @@ class User extends CI_Model{
         $this->lastname = "";
         $this->username = "";
         $this->password = "";
+        $this->load->database();
     }
 
     public function create(){
         $this->db->insert($this->TABLE, array(
-            $this->user_type,
-            $this->email,
-            $this->username,
-            $this->password,
-            $this->firstname,
-            $this->middlename,
-            $this->lastname
+            'user_type' => $this->user_type,
+            'email' => $this->email,
+            'username' => $this->username,
+            'password' => $this->password,
+            'firstname' => $this->firstname,
+            'middlename' => $this->middlename,
+            'lastname' => $this->lastname
         ));
     }
 

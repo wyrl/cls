@@ -2,15 +2,17 @@
 
 class User extends CI_Controller
 {
-
+    
     public function register()
     {
         $this->load->helper(array('form', 'url'));
         $this->load->library('form_validation');
-
+        
+        //echo $this->input->post("username");
         $this->form_validation->set_rules(
-            'username', 'Username',
-            'required|min_length[5]|max_length[12]|is_unique[users.username]',
+            'username', 
+            'Username',
+            'required|min_length[5]|max_length[12]|is_unique[user.email]',
                 array(
                         'is_unique'     => 'This %s already exists.'
                 )
@@ -27,17 +29,27 @@ class User extends CI_Controller
             $this->load->view('template/footer');
         }
         else{
-            $this->load->model("User");
-            $this->User->firstname = $this->input->post("firstname");
-
+            $this->load->model("UserModel");
+            $this->UserModel->firstname = $this->input->post("firstname");
+            $this->UserModel->lastname = $this->input->post("lastname");
+            $this->UserModel->email = $this->input->post("email");
+            $this->UserModel->username = $this->input->post("username");
+            $this->UserModel->password = $this->input->post("password");
+            
+            $this->UserModel->create();
         }
     }
 
     public function login()
     {
+        
     }
 
     public function forgot()
     {
+    }
+    
+    public function test(){
+        $this->load->database();
     }
 }
