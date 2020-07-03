@@ -1,0 +1,34 @@
+.search-form .search-input {
+    width: 100%;
+}
+
+.btn-actions .btn-add {
+    width: 150px;
+}
+
+.action-buttons {
+    width: 175px;
+}
+
+.action-buttons button{
+    width: 65px;
+}
+
+.register-form {
+    max-width: 500px;
+    margin: 0 auto;
+    margin-top: 4em;
+}
+
+#register-page button[type=submit] {
+    display: block;
+    margin: 0 auto;
+    width: 200px;
+    margin-top: 1rem;
+}
+
+#register-page h1 {
+    text-align: center;
+    margin-top: 2rem;
+}
+
