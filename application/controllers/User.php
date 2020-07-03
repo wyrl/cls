@@ -2,17 +2,24 @@
 
 class User extends CI_Controller
 {
-    
+    public function __construct()
+    {
+        $this->load->model("UserModel");
+    }
+
+
     public function register()
     {
         $this->load->helper(array('form', 'url'));
+        $this->load->database();
         $this->load->library('form_validation');
+        
         
         //echo $this->input->post("username");
         $this->form_validation->set_rules(
             'username', 
             'Username',
-            'required|min_length[5]|max_length[12]|is_unique[user.email]',
+            'required|min_length[5]|max_length[12]|is_unique[user.username]',
                 array(
                         'is_unique'     => 'This %s already exists.'
                 )
@@ -29,7 +36,6 @@ class User extends CI_Controller
             $this->load->view('template/footer');
         }
         else{
-            $this->load->model("UserModel");
             $this->UserModel->firstname = $this->input->post("firstname");
             $this->UserModel->lastname = $this->input->post("lastname");
             $this->UserModel->email = $this->input->post("email");
@@ -37,11 +43,42 @@ class User extends CI_Controller
             $this->UserModel->password = $this->input->post("password");
             
             $this->UserModel->create();
+
+            $this->load->view('template/header');
+            $this->load->view('user/success');
+            $this->load->view('template/footer');
         }
     }
 
     public function login()
     {
+        $this->load->helper(array('form'));
+        $this->load->library('form_validation');
+
+        $submit = $this->input->post('submit');
+        $data = array(
+            'is_success' => false,
+        );
+        
+        // if(isset($submit)){
+        //     $this->UserModel->username = $this->input->post('username');
+        //     $this->UserModel->password = $this->input->post('password');
+            
+        //     if(!$this->UserModel->auth()){
+        //         $data['is_success'] = true;
+        //     }
+        // }
+
+        $this->form_validation->set_rules('username', 'Username', 'required');
+        $this->form_validation->set_rules('password', 'Password', 'required');
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('template/header');
+            $this->load->view('user/login', $data);
+            $this->load->view('template/footer');
+        }
+
+
         
     }
 
@@ -50,6 +87,8 @@ class User extends CI_Controller
     }
     
     public function test(){
-        $this->load->database();
+        $this->load->view('template/header');
+        $this->load->view('user/success');
+        $this->load->view('template/footer');
     }
 }
