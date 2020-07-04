@@ -9,6 +9,7 @@
     <!-- CSS -->
     <link rel="stylesheet" href="<?= base_url("assets/bootstrap-4/css/bootstrap.min.css") ?>">
     <link rel="stylesheet" href="<?= base_url('assets/style.css') ?>" />
+    <link rel="stylesheet" href="<?= base_url('assets/responsive.css') ?>" />
 
     <!-- JS -->
     <script src="<?= base_url("assets/jquery-3.5.1.min.js"); ?>"></script>
@@ -40,8 +41,8 @@
                     </li>
                 </ul> -->
                     <?php if (logged_in()) : ?>
-                        <div class="ml-auto">
-                            <a class="logout" href="<?= site_url('user/logout') ?>">Logout</a>
+                        <div class="ml-auto logout">
+                            <a href="<?= site_url('user/logout') ?>">Logout</a>
                         </div>
                     <?php endif; ?>
                     <!-- <div class="user"><a href="#">Login</a> or <a href="#">Register</a></div> -->

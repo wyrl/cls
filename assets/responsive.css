@@ -1,0 +1,28 @@
+@media only screen and (max-width: 520px){
+    .search-form {
+        flex-flow: row;
+    }
+    .search-form .search-input{
+        width: 100%;
+    }
+    .contact-table .h-email, 
+    .contact-table .email {
+        display: none;
+    }
+    .logout {
+        margin: 0.5rem 0;
+    }
+}
+
+@media only screen and (max-width: 414px){
+    .contact-table .h-fullname, 
+    .contact-table .fullname {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 375px){
+    .register-form, .login-form, .forgot-form {
+        padding: 2rem 2rem;
+    }
+}

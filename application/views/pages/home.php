@@ -73,8 +73,8 @@
     <div class="container">
 
         <form action="<?= site_url() ?>" class="form-inline search-form mt-4">
-            <input class="form-control search-input" name="s" value="<?= $search?>" type="text" placeholder="Search"><button type="submit" class="btn btn-primary">Go</button>
-            <input type="hidden" name="page" value="<?= $current_page?>">
+            <input class="form-control search-input" name="s" value="<?= $search ?>" type="text" placeholder="Search"><button type="submit" class="btn btn-primary">Go</button>
+            <input type="hidden" name="page" value="<?= $current_page ?>">
         </form>
         <div class="btn-actions my-4">
             <button class="btn btn-primary btn-add" data-toggle="modal" data-target="#contact-modal">Add</button>
@@ -83,8 +83,8 @@
             <thead class="thead-dark">
                 <tr>
                     <th>Contact Number</th>
-                    <th>Fullname</th>
-                    <th>Email</th>
+                    <th class="h-fullname">Fullname</th>
+                    <th class="h-email">Email</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -93,7 +93,7 @@
                     <td class="contact"></td>
                     <td class="fullname"></td>
                     <td class="email"></td>
-                    <td class="action-buttons"><button class="btn-edit">edit</button> <button class="btn-delete">delete</button></td>
+                    <td class="action-buttons"><button class="btn-edit"><img src="<?= base_url('assets/img/pencil.png')?>" width="24"></button> <button class="btn-delete"><img src="<?= base_url('assets/img/delete.png')?>" width="24"></button></td>
                 </tr>
 
                 <?php foreach ($contacts as $contact) : ?>
@@ -101,7 +101,7 @@
                         <td class="contact"><?= $contact->contact_number ?></td>
                         <td class="fullname"><?= $contact->firstname . " " . $contact->lastname; ?></td>
                         <td class="email"><?= $contact->email ?></td>
-                        <td class="action-buttons"><button class="btn-edit">edit</button> <button class="btn-delete">delete</button></td>
+                        <td class="action-buttons"><button class="btn-edit"><img src="<?= base_url('assets/img/pencil.png')?>" width="24"></button> <button class="btn-delete"><img src="<?= base_url('assets/img/delete.png')?>" width="24"></button></td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
@@ -168,7 +168,7 @@
     $('#delete-modal .btn-yes').click(function() {
         $.get('<?= site_url('contact/delete/'); ?>' + $current_tr.data('id'))
             .done(function(data) {
-                if(data.is_success){
+                if (data.is_success) {
                     location.reload();
                     $("#delete-modal").modal('hide');
                 }
