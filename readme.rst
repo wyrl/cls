@@ -1,5 +1,5 @@
 #####################################################
-How to install and configure in you local or website
+How to install and configure in your local or website
 #####################################################
 
 ******
