@@ -18,7 +18,7 @@ class User extends CI_Controller
         $this->form_validation->set_rules(
             'username', 
             'Username',
-            'required|min_length[5]|max_length[12]|is_unique[user.username]',
+            'required|min_length[5]|max_length[12]|is_unique[users.username]',
                 array(
                         'is_unique'     => 'This %s already exists.'
                 )
@@ -88,6 +88,16 @@ class User extends CI_Controller
         $this->load->view('user/login', $data);
         $this->load->view('template/footer');
         
+    }
+
+    public function logout(){
+        $this->load->library('session');
+
+        if($this->session->has_userdata('logged_in')){
+            $this->session->logged_in = false;
+            $this->session->user_id = -1;
+            redirect('user/login');
+        }
     }
 
     public function forgot()

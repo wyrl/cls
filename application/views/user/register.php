@@ -45,6 +45,7 @@
         </div>
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>
+      <label style="margin-top: 2.5rem;" ><a href="<?= site_url('user/login')?>">Login</a>, if you have already registered.</label>
     </form>
   </div>
 </main>

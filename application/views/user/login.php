@@ -17,6 +17,8 @@
                 <small class="form-text text-danger"><?php echo form_error('password'); ?></small>
             </div>
             <a href="<?= site_url('user/forgot') ?>">Forgot Password?</a>
+            
+            <label style="display:block" class="mt-2">Don't have an account? <a href="<?= site_url('user/register') ?>">Register</a></label>
             <button type="submit" name="submit" class="btn btn-primary mt-5">Submit</button>
         </form>
     </div>

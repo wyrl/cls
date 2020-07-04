@@ -6,10 +6,48 @@
 class Main extends CI_Controller
 {
 
+    public function __construct()
+    {
+        parent::__construct();
+        if(!logged_in()){
+            redirect('user/login');
+        }
+    }
+
     public function index()
     {
+        $this->load->model('ContactModel');
+
+        $page = $this->input->get('page');
+        $s = $this->input->get('s');
+        $limit = 10;
+        $count = $this->ContactModel->count();
+        $page_count = 1;
+
+        if($count != 0){
+            $page_count = (double)($count / $limit);
+            $page_count = $page_count == (int)$page_count ? (int)$page_count : ((int)$page_count) + 1;
+        }
+
+        if(!isset($s)){
+            $s = "";
+        }
+        
+        if(!isset($page)){
+            $page = 1;
+        }
+
+        $contacts = $this->ContactModel->get_list($s, $page, $limit);
+
+        $data = array(
+            'contacts' => $contacts,
+            'page_count' => $page_count,
+            'current_page' => $page,
+            'search' => $s
+        );
+
         $this->load->view("template/header");
-        $this->load->view("pages/home");
+        $this->load->view("pages/home", $data);
         $this->load->view("template/footer");
     }
 

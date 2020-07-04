@@ -10,7 +10,7 @@ class UserModel extends CI_Model{
     public $middlename;
     public $lastname;
 
-    private $TABLE = "user";
+    private $TABLE = "users";
 
     public function __construct()
     {
