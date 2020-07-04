@@ -1,34 +1,67 @@
 .search-form .search-input {
-    width: 100%;
+  width: 100%;
 }
 
 .btn-actions .btn-add {
-    width: 150px;
+  width: 150px;
 }
 
 .action-buttons {
-    width: 175px;
+  width: 175px;
 }
 
-.action-buttons button{
-    width: 65px;
+.action-buttons button {
+  width: 65px;
 }
+
+/* 
+------------------------------------------------------------------------------------------------------
+Register/Login Form
+------------------------------------------------------------------------------------------------------ 
+*/
 
 .register-form {
-    max-width: 500px;
-    margin: 0 auto;
-    margin-top: 4em;
+  max-width: 800px;
 }
 
-#register-page button[type=submit] {
-    display: block;
-    margin: 0 auto;
-    width: 200px;
-    margin-top: 1rem;
+.login-form,
+.forgot-form {
+  max-width: 500px;
 }
 
-#register-page h1 {
-    text-align: center;
-    margin-top: 2rem;
+.error-msg {
+  margin-bottom: 1.5rem;
+  font-size: 1.3rem;
 }
 
+.register-form,
+.login-form,
+.forgot-form {
+  margin: 0 auto;
+  margin-top: 4em;
+  padding: 4rem;
+  -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19),
+    0 6px 6px rgba(0, 0, 0, 0.23);
+  -moz-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19),
+    0 6px 6px rgba(0, 0, 0, 0.23);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+
+#register-page button[type="submit"],
+#login-page button[type="submit"] {
+  display: block;
+  margin: 0 auto;
+  width: 200px;
+  margin-top: 1rem;
+}
+
+#register-page h1,
+#login-page h1,
+#forgot-page h1 {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.success-register {
+  margin-top: 4rem;
+}

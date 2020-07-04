@@ -45,8 +45,18 @@ class UserModel extends CI_Model{
 
         $row = $result->row();
 
-        return isset($row);
+        if(isset($row)){
+            $this->user_id = $row->user_id;
+            $this->user_type = $row->user_type;
+            $this->email = $row->email;
+            $this->firstname = $row->firstname;
+            $this->middilename = $row->middlename;
+            $this->lastname = $row->lastname;
 
+            return true;
+        }
+
+        return false;
     }
 
     public function change(){

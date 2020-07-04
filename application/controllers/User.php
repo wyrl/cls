@@ -4,6 +4,7 @@ class User extends CI_Controller
 {
     public function __construct()
     {
+        parent::__construct();
         $this->load->model("UserModel");
     }
 
@@ -14,8 +15,6 @@ class User extends CI_Controller
         $this->load->database();
         $this->load->library('form_validation');
         
-        
-        //echo $this->input->post("username");
         $this->form_validation->set_rules(
             'username', 
             'Username',
@@ -54,36 +53,48 @@ class User extends CI_Controller
     {
         $this->load->helper(array('form'));
         $this->load->library('form_validation');
+        $this->load->library('session');        
 
         $submit = $this->input->post('submit');
         $data = array(
-            'is_success' => false,
+            'is_success' => true,
         );
-        
-        // if(isset($submit)){
-        //     $this->UserModel->username = $this->input->post('username');
-        //     $this->UserModel->password = $this->input->post('password');
-            
-        //     if(!$this->UserModel->auth()){
-        //         $data['is_success'] = true;
-        //     }
-        // }
 
         $this->form_validation->set_rules('username', 'Username', 'required');
         $this->form_validation->set_rules('password', 'Password', 'required');
 
-        if ($this->form_validation->run() == FALSE) {
-            $this->load->view('template/header');
-            $this->load->view('user/login', $data);
-            $this->load->view('template/footer');
+        if ($this->form_validation->run()) {
+            $this->UserModel->username = $this->input->post('username');
+            $this->UserModel->password = $this->input->post('password');
+
+            if(!$this->UserModel->auth()){
+                $data['is_success'] = false;
+            }
+            else{
+                $this->session->set_userdata(array(
+                    'user_id' => $this->UserModel->user_id,
+                    'logged_in' => true
+                ));
+                redirect('/');
+            }
+        }
+        else{
+            if(logged_in()){
+                redirect('/');
+            }
         }
 
-
+        $this->load->view('template/header');
+        $this->load->view('user/login', $data);
+        $this->load->view('template/footer');
         
     }
 
     public function forgot()
     {
+        $this->load->view('template/header');
+        $this->load->view('user/forgot');
+        $this->load->view('template/footer');
     }
     
     public function test(){
