@@ -93,7 +93,7 @@
                     <td class="contact"></td>
                     <td class="fullname"></td>
                     <td class="email"></td>
-                    <td class="action-buttons"><button class="btn-edit"><img src="<?= base_url('assets/img/pencil.png')?>" width="24"></button> <button class="btn-delete"><img src="<?= base_url('assets/img/delete.png')?>" width="24"></button></td>
+                    <td class="action-buttons"><button class="btn-edit"><img src="<?= base_url('assets/img/pencil.png') ?>" width="24"></button> <button class="btn-delete"><img src="<?= base_url('assets/img/delete.png') ?>" width="24"></button></td>
                 </tr>
 
                 <?php foreach ($contacts as $contact) : ?>
@@ -101,7 +101,7 @@
                         <td class="contact"><?= $contact->contact_number ?></td>
                         <td class="fullname"><?= $contact->firstname . " " . $contact->lastname; ?></td>
                         <td class="email"><?= $contact->email ?></td>
-                        <td class="action-buttons"><button class="btn-edit"><img src="<?= base_url('assets/img/pencil.png')?>" width="24"></button> <button class="btn-delete"><img src="<?= base_url('assets/img/delete.png')?>" width="24"></button></td>
+                        <td class="action-buttons"><button class="btn-edit"><img src="<?= base_url('assets/img/pencil.png') ?>" width="24"></button> <button class="btn-delete"><img src="<?= base_url('assets/img/delete.png') ?>" width="24"></button></td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
@@ -168,7 +168,9 @@
     $('#delete-modal .btn-yes').click(function() {
         $.get('<?= site_url('contact/delete/'); ?>' + $current_tr.data('id'))
             .done(function(data) {
+                console.log(data);
                 if (data.is_success) {
+                    console.log('deleted');
                     location.reload();
                     $("#delete-modal").modal('hide');
                 }
@@ -190,7 +192,34 @@
         rules: {
             email: {
                 required: true,
-                email: true
+                email: true,
+                remote: {
+                    url: "<?= base_url('contact/check_email') ?>",
+                    type: "post",
+                    data: {
+                        email: function() {
+                            return encodeURI($contact_form.find('#email').val());
+                        },
+                        action: function() {
+                            return $contact_form.data('action');
+                        }
+                    }
+                }
+            },
+            contact: {
+                required: true,
+                remote: {
+                    url: "<?= base_url('contact/check_contact') ?>",
+                    type: "post",
+                    data: {
+                        contact: function() {
+                            return $contact_form.find("#contact").val();
+                        },
+                        action: function() {
+                            return $contact_form.data('action');
+                        }
+                    }
+                }
             }
         },
         submitHandler: function(form) {

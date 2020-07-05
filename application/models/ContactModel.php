@@ -73,4 +73,26 @@ class ContactModel extends CI_Model{
         
         return $query->row()->count;
     }
+
+    public function is_email_exists(){
+        $result = $this->db->get_where($this->TABLE, array(
+            'user_id' => $this->user_id,
+            'email' => $this->email
+        ));
+
+        $row = $result->row();
+
+        return isset($row);
+    }
+
+    public function is_contact_exists(){
+        $result = $this->db->get_where($this->TABLE, array(
+            'user_id' => $this->user_id,
+            'contact_number' => $this->contact
+        ));
+
+        $row = $result->row();
+
+        return isset($row);
+    }
 }
