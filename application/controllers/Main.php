@@ -80,7 +80,7 @@ class Main extends CI_Controller
         //$response->success() && var_dump($response->getData());
 
 
-        require 'vendor/autoload.php'; // If you're using Composer (recommended)
+        //require 'vendor/autoload.php'; // If you're using Composer (recommended)
         // Comment out the above line if not using Composer
         // require("<PATH TO>/sendgrid-php.php");
         // If not using Composer, uncomment the above line and
@@ -89,23 +89,23 @@ class Main extends CI_Controller
         // which is included in the download:
         // https://github.com/sendgrid/sendgrid-php/releases
 
-        $email = new \SendGrid\Mail\Mail();
-        $email->setFrom("wyrlvillazorda@gmail.com", "Example User");
-        $email->setSubject("Sending with SendGrid is Fun");
-        $email->addTo("wyrlvillazorda@gmail.com", "Example User");
-        $email->addContent("text/plain", "and easy to do anywhere, even with PHP");
-        $email->addContent(
-            "text/html",
-            "<strong>and easy to do anywhere, even with PHP</strong>"
-        );
-        $sendgrid = new \SendGrid('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');
-        try {
-            $response = $sendgrid->send($email);
-            print $response->statusCode() . "\n";
-            print_r($response->headers());
-            print $response->body() . "\n";
-        } catch (Exception $e) {
-            echo 'Caught exception: ' . $e->getMessage() . "\n";
-        }
+        // $email = new \SendGrid\Mail\Mail();
+        // $email->setFrom("wyrlvillazorda@gmail.com", "Example User");
+        // $email->setSubject("Sending with SendGrid is Fun");
+        // $email->addTo("wyrlvillazorda@gmail.com", "Example User");
+        // $email->addContent("text/plain", "and easy to do anywhere, even with PHP");
+        // $email->addContent(
+        //     "text/html",
+        //     "<strong>and easy to do anywhere, even with PHP</strong>"
+        // );
+        // $sendgrid = new \SendGrid('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');
+        // try {
+        //     $response = $sendgrid->send($email);
+        //     print $response->statusCode() . "\n";
+        //     print_r($response->headers());
+        //     print $response->body() . "\n";
+        // } catch (Exception $e) {
+        //     echo 'Caught exception: ' . $e->getMessage() . "\n";
+        // }
     }
 }
