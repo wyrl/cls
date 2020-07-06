@@ -53,6 +53,11 @@ class Main extends CI_Controller
 
     public function test()
     {
+        $this->load->view("template/header");
+        $this->load->view("user/success");
+        $this->load->view("template/footer");
+
+
         // $mj = new \Mailjet\Client('113e4db7447829d6880644ecb1933229', '81f5f5b9a7f65f6a826c549a08cd9713', true, ['version' => 'v3.1']);
         // $body = [
         //     'Messages' => [

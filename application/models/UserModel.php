@@ -37,6 +37,39 @@ class UserModel extends CI_Model{
         ));
     }
 
+    public function get(){
+        $result = $this->db->get_where($this->TABLE, array(
+            'user_id' => $this->user_id
+        ));
+
+        $row = $result->row();
+
+        return $row;
+    }
+
+    public function self_retrieve(){
+        $user = $this->get();
+
+        if(isset($user)){
+            $this->user_id = $user->user_id;
+            $this->user_type = $user->user_type;
+            $this->email = $user->email;
+            $this->firstname = $user->firstname;
+            $this->middlename = $user->middlename;
+            $this->lastname = $user->lastname;
+            $this->username = $user->username;
+            $this->password = $user->password;
+        }
+    }
+
+    public function update_password(){
+        $this->db->update($this->TABLE, array(
+            'password' => $this->password
+        ), array(
+            'user_id' => $this->user_id
+        ));
+    }
+
     public function auth(){
         $result = $this->db->get_where($this->TABLE, array(
             'username' => $this->username,
@@ -57,6 +90,19 @@ class UserModel extends CI_Model{
         }
 
         return false;
+    }
+
+    public function getByEmail(){
+        $result = $this->db->get_where($this->TABLE, array(
+            'email' => $this->email
+        ));
+
+        return $result->row();
+    }
+
+    public function is_email_exists(){
+        $a = $this->getByEmail();
+        return isset($a);
     }
 
     public function change(){

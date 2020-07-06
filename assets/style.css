@@ -48,7 +48,8 @@ Register/Login Form
 }
 
 .login-form,
-.forgot-form {
+.forgot-form,
+.reset-form {
   max-width: 500px;
 }
 
@@ -59,7 +60,8 @@ Register/Login Form
 
 .register-form,
 .login-form,
-.forgot-form {
+.forgot-form,
+.reset-form {
   margin: 0 auto;
   margin-top: 4em;
   margin-bottom: 4em;
@@ -81,11 +83,13 @@ Register/Login Form
 
 #register-page h1,
 #login-page h1,
-#forgot-page h1 {
+#forgot-page h1,
+#reset-page h1 {
   text-align: center;
   margin-top: 2rem;
 }
 
-.success-register {
+.success-register,
+.reset-password-alert {
   margin-top: 4rem;
 }
