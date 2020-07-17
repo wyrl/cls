@@ -127,6 +127,6 @@ class Contact extends CI_Controller{
         $this->ContactModel->contact = $contact;
         $this->ContactModel->user_id = $this->session->user_id;
 
-        echo json_encode($this->ContactModel->is_contact_exists() && $action ? "This contact is already exists." : true);
+        echo json_encode($this->ContactModel->is_contact_exists() && $action == 'add' ? "This contact is already exists." : true);
     }
 }
